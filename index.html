@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parv Saini | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    animation: {
+                        'spin-slow': 'spin 10s linear infinite',
+                        'spin-slow-reverse': 'spin 15s linear infinite reverse',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: rgba(6, 182, 212, 0.3); /* cyan-500/30 */
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Floating Animation for background icons */
+        @keyframes float-icon {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.05; }
+            50% { transform: translate(20px, -30px) scale(1.2); opacity: 0.15; }
+        }
+        .floating-icon {
+            position: absolute;
+            animation: float-icon infinite ease-in-out;
+            color: rgba(6, 182, 212, 0.5); /* cyan */
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- Dynamic Cursor Spotlight -->
+    <div id="cursor-spotlight" class="fixed top-0 left-0 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none z-0 transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 will-change-transform"></div>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden z-10">
+            <div id="hero-bg" class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50 will-change-transform"></div>
+            
+            <div class="relative z-10 flex flex-col items-center p-8 md:p-12 bg-gray-900/40 backdrop-blur-2xl border border-white/10 rounded-[40px] shadow-[0_0_80px_rgba(6,182,212,0.15)] max-w-3xl w-11/12 text-center reveal-scale">
+                <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full mb-8">
+                    <div class="absolute inset-0 rounded-full border-2 border-cyan-400/50 animate-spin-slow"></div>
+                    <div class="absolute inset-2 rounded-full border border-purple-500/50 animate-spin-slow-reverse"></div>
+                    <div class="absolute inset-4 rounded-full bg-gray-800 overflow-hidden flex items-center justify-center">
+                        <span class="text-4xl font-black text-gray-500 tracking-tighter">PS</span>
+                    </div>
+                </div>
+                
+                <div class="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-semibold text-cyan-300 tracking-wider uppercase mb-6 inline-block reveal" style="transition-delay: 100ms;">
+                    Welcome to my portfolio
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-white to-purple-400 reveal" style="transition-delay: 200ms;">
+                    Parv Saini
+                </h1>
+                
+                <p class="mt-6 text-lg md:text-xl text-gray-400 font-medium tracking-wide max-w-xl reveal" style="transition-delay: 300ms;">
+                    Cybersecurity Student | Developer | Builder
+                </p>
+                
+                <a href="#about" class="mt-10 px-8 py-4 bg-white/5 border border-white/10 text-white rounded-full hover:bg-cyan-500/20 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(0,255,255,0.2)] transition-all duration-300 flex items-center gap-2 group reveal" style="transition-delay: 400ms;">
+                    Enter The Matrix
+                    <i data-lucide="chevron-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32 px-6 relative z-10 container mx-auto max-w-6xl">
+            <div class="grid lg:grid-cols-5 gap-16 items-center">
+                <div class="lg:col-span-3 reveal-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-semibold mb-6">
+                        <i data-lucide="terminal" class="w-4 h-4"></i> System.out.println("About Me");
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">Initializing <span class="text-cyan-400">Profile...</span></h2>
+                    <p class="text-gray-300 leading-relaxed text-lg mb-6">
+                        Cybersecurity and software engineering student with hands-on experience in MERN development, networking, and security testing. Built multiple full-stack and security projects, supported enterprise audits, and led student teams during internships. Driven to design secure, practical systems while continuously improving through real-world implementation.
+                    </p>
+                    <div class="p-4 rounded-xl bg-white/5 border border-white/10 border-l-4 border-l-cyan-500">
+                        <p class="text-gray-200 font-medium">B.Tech in Computer Science (Cyber Security) @ UPES (2023-2027) | CGPA: 7.89</p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 grid grid-cols-2 gap-4">
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group reveal" style="transition-delay: 0ms;">
+                        <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 group-hover:from-cyan-400 group-hover:to-purple-500 transition-colors duration-300 mb-2">10+</div>
+                        <div class="text-gray-400 text-sm font-medium">Projects Built</div>
+                    </div>
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group reveal" style="transition-delay: 100ms;">
+                        <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 group-hover:from-cyan-400 group-hover:to-purple-500 transition-colors duration-300 mb-2">7.89</div>
+                        <div class="text-gray-400 text-sm font-medium">CGPA</div>
+                    </div>
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group reveal" style="transition-delay: 200ms;">
+                        <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 group-hover:from-cyan-400 group-hover:to-purple-500 transition-colors duration-300 mb-2">3</div>
+                        <div class="text-gray-400 text-sm font-medium">Internships</div>
+                    </div>
+                    <div class="bg-gray-900/50 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group reveal" style="transition-delay: 300ms;">
+                        <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 group-hover:from-cyan-400 group-hover:to-purple-500 transition-colors duration-300 mb-2">4</div>
+                        <div class="text-gray-400 text-sm font-medium">Certifications</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="py-32 px-6 relative z-10 min-h-screen flex items-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent z-0"></div>
+            
+            <!-- JavaScript will inject floating icons here -->
+            <div id="floating-icons-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+            <div class="container mx-auto max-w-6xl relative z-10">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Technical Arsenal</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Tools and technologies I use to build secure, scalable, and resilient systems.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Languages -->
+                    <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:border-cyan-500/50 transition-colors duration-300 reveal" style="transition-delay: 0ms;">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Languages
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">C</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">C++</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Java</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Python</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">SQL</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">HTML</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">JavaScript</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Web (MERN) -->
+                    <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:border-cyan-500/50 transition-colors duration-300 reveal" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Web (MERN)
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">React</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Node.js</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Express</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">MongoDB</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity -->
+                    <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:border-cyan-500/50 transition-colors duration-300 reveal" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Cybersecurity
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Nmap</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Nessus</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">John the Ripper</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">WPA2 WiFi Testing</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">OWASP Top 10</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Penetration Testing</span>
+                        </div>
+                    </div>
+
+                    <!-- Systems & Net -->
+                    <div class="bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover:border-cyan-500/50 transition-colors duration-300 reveal" style="transition-delay: 300ms;">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Systems & Net
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Firewalls</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Routers</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">WAF</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Network Fundamentals</span>
+                            <span class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-default">Kali Linux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-32 px-6 relative z-10 container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-white border-l-4 border-cyan-400 pl-6 reveal">
+                Deployed Directives
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Otterchat -->
+                <div class="group relative bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-[32px] p-8 hover:bg-gray-800/60 transition-all duration-500 overflow-hidden reveal" style="transition-delay: 0ms;">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-black w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i data-lucide="lock" class="w-8 h-8 text-cyan-400"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="github" class="w-5 h-5 text-gray-300"></i></a>
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="external-link" class="w-5 h-5 text-gray-300"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">Otterchat</h3>
+                        <p class="text-gray-400 mb-8 flex-grow leading-relaxed">Tor based end-to-end encrypted messaging app (decentralized). Improved message privacy by eliminating centralized storage.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Tor</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Encryption</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">P2P</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Decentralized</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fuzzinator -->
+                <div class="group relative bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-[32px] p-8 hover:bg-gray-800/60 transition-all duration-500 overflow-hidden reveal" style="transition-delay: 100ms;">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-black w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i data-lucide="terminal" class="w-8 h-8 text-purple-400"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="github" class="w-5 h-5 text-gray-300"></i></a>
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="external-link" class="w-5 h-5 text-gray-300"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">Fuzzinator</h3>
+                        <p class="text-gray-400 mb-8 flex-grow leading-relaxed">AI-based fuzzing tool used to fuzz C programs. Focuses on memory-based vulnerability detection.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">AI</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">C</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Memory Management</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Fuzzing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IPS -->
+                <div class="group relative bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-[32px] p-8 hover:bg-gray-800/60 transition-all duration-500 overflow-hidden reveal" style="transition-delay: 200ms;">
+                    <div class="absolute inset-0 bg-gradient-to-br from-rose-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-black w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i data-lucide="shield" class="w-8 h-8 text-rose-400"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="github" class="w-5 h-5 text-gray-300"></i></a>
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="external-link" class="w-5 h-5 text-gray-300"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">Smart Intrusion Prevention System</h3>
+                        <p class="text-gray-400 mb-8 flex-grow leading-relaxed">Implemented real-time traffic monitoring with rule-based detection. Automated blocking logic to reduce suspicious network activity.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Networking</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Security</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HMS -->
+                <div class="group relative bg-gray-900/40 backdrop-blur-sm border border-white/10 rounded-[32px] p-8 hover:bg-gray-800/60 transition-all duration-500 overflow-hidden reveal" style="transition-delay: 300ms;">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-black w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
+                                <i data-lucide="database" class="w-8 h-8 text-emerald-400"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="github" class="w-5 h-5 text-gray-300"></i></a>
+                                <a href="#" class="p-2 bg-white/5 rounded-full hover:bg-white/20 transition-colors"><i data-lucide="external-link" class="w-5 h-5 text-gray-300"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">Hospital Management System</h3>
+                        <p class="text-gray-400 mb-8 flex-grow leading-relaxed">Built full-stack system for patients, billing, and records. Reduced manual paperwork by digitizing workflows.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">MERN</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">Full Stack</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-white/5 text-gray-300 rounded-full border border-white/10 group-hover:border-cyan-500/30 transition-colors">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section class="py-32 px-6 relative z-10 container mx-auto max-w-4xl">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Operational History</h2>
+                <p class="text-gray-400">Internships and Leadership Roles</p>
+            </div>
+
+            <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
+                <!-- Exp 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 0ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.6)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors duration-300 backdrop-blur-sm">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                            <h3 class="font-bold text-xl text-white">Cybersecurity Intern</h3>
+                            <span class="text-xs font-semibold px-2 py-1 bg-white/10 rounded-md text-gray-300 mt-2 sm:mt-0 whitespace-nowrap">8 weeks</span>
+                        </div>
+                        <div class="font-medium mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-500">Dalmia Bharat Group</div>
+                        <p class="text-gray-400 text-sm leading-relaxed">Assisted in internal security audits and vulnerability assessments. Supported employee awareness modules on cybersecurity practices.</p>
+                    </div>
+                </div>
+
+                <!-- Exp 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.6)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors duration-300 backdrop-blur-sm">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                            <h3 class="font-bold text-xl text-white">Full Stack Intern</h3>
+                            <span class="text-xs font-semibold px-2 py-1 bg-white/10 rounded-md text-gray-300 mt-2 sm:mt-0 whitespace-nowrap">8 weeks</span>
+                        </div>
+                        <div class="font-medium mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-500">Hexatech Pvt. Ltd. (Remote)</div>
+                        <p class="text-gray-400 text-sm leading-relaxed">Developed backend APIs and frontend components using MERN. Integrated basic security controls into web applications.</p>
+                    </div>
+                </div>
+
+                <!-- Exp 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-black bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.6)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors duration-300 backdrop-blur-sm">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                            <h3 class="font-bold text-xl text-white">Group Lead</h3>
+                            <span class="text-xs font-semibold px-2 py-1 bg-white/10 rounded-md text-gray-300 mt-2 sm:mt-0 whitespace-nowrap">8 weeks</span>
+                        </div>
+                        <div class="font-medium mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-500">Sparsh Society</div>
+                        <p class="text-gray-400 text-sm leading-relaxed">Led intern teams teaching underprivileged children. Helped multiple students transition into formal schooling. Coordinated volunteer interviews.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-32 px-6 relative z-10 flex flex-col items-center justify-center container mx-auto">
+            <div class="relative w-full max-w-3xl reveal-scale">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-[40px] blur-xl opacity-20"></div>
+                <div class="relative bg-gray-950/80 backdrop-blur-xl border border-white/10 p-12 md:p-16 rounded-[40px] flex flex-col items-center text-center overflow-hidden">
+                    
+                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Establish Connection</h2>
+                    <p class="text-gray-400 mb-10 text-lg max-w-lg">
+                        Looking for opportunities to design secure, practical systems. My inbox is always open.
+                    </p>
+                    
+                    <div class="flex gap-6 mb-12">
+                        <a href="mailto:parvsaini05@gmail.com" class="p-4 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-2 hover:bg-cyan-500/20 hover:border-cyan-400 hover:shadow-[0_10px_30px_rgba(0,255,255,0.2)] transition-all duration-300 group">
+                            <i data-lucide="mail" class="w-7 h-7 text-gray-300 group-hover:text-cyan-300"></i>
+                        </a>
+                        <a href="https://github.com/SainiParv05" target="_blank" rel="noreferrer" class="p-4 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-2 hover:bg-white/20 hover:border-white hover:shadow-[0_10px_30px_rgba(255,255,255,0.2)] transition-all duration-300 group">
+                            <i data-lucide="github" class="w-7 h-7 text-gray-300 group-hover:text-white"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/sainiparv0569" target="_blank" rel="noreferrer" class="p-4 bg-white/5 border border-white/10 rounded-2xl hover:-translate-y-2 hover:bg-blue-500/20 hover:border-blue-400 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] transition-all duration-300 group">
+                            <i data-lucide="linkedin" class="w-7 h-7 text-gray-300 group-hover:text-blue-400"></i>
+                        </a>
+                    </div>
+
+                    <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8"></div>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 items-center justify-center text-sm font-medium text-gray-500">
+                        <span>Greater Noida, India</span>
+                        <span class="hidden md:inline">•</span>
+                        <span>+91-7668450958</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 text-center text-gray-600 text-sm relative z-10 border-t border-white/5">
+        <p>© <span id="year"></span> Parv Saini. Securely Built.</p>
+    </footer>
+
+    <!-- Scripts for Interactions -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Cursor Spotlight Effect
+        const cursor = document.getElementById('cursor-spotlight');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+        });
+
+        // Hero Parallax Effect
+        const heroBg = document.getElementById('hero-bg');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                heroBg.style.transform = `translateY(${scrolled * 0.4}px)`;
+            }
+        });
+
+        // Floating Background Icons Setup
+        const iconNames = ['terminal', 'shield', 'code', 'server', 'cpu', 'database', 'globe', 'lock', 'wifi', 'smartphone', 'layout'];
+        const container = document.getElementById('floating-icons-container');
+        
+        for (let i = 0; i < 25; i++) {
+            const iconName = iconNames[i % iconNames.length];
+            const div = document.createElement('div');
+            
+            // Randomize position, duration, size, and delay
+            const randomX = Math.random() * 100;
+            const randomY = Math.random() * 100;
+            const randomDuration = 10 + Math.random() * 20;
+            const randomDelay = Math.random() * -20; // negative delay to start mid-animation
+            const size = Math.random() * 40 + 20;
+
+            div.className = 'floating-icon';
+            div.style.left = `${randomX}%`;
+            div.style.top = `${randomY}%`;
+            div.style.animationDuration = `${randomDuration}s`;
+            div.style.animationDelay = `${randomDelay}s`;
+            
+            // Create icon
+            const iElement = document.createElement('i');
+            iElement.setAttribute('data-lucide', iconName);
+            iElement.style.width = `${size}px`;
+            iElement.style.height = `${size}px`;
+            
+            div.appendChild(iElement);
+            container.appendChild(div);
+        }
+        // Re-initialize lucide for newly added icons
+        lucide.createIcons();
+
+        // Scroll Reveal Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
